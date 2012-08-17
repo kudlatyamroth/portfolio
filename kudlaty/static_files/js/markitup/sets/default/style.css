@@ -13,22 +13,72 @@
 }
 
 .markItUp .markItUpButton4 a {
-	background-image:url(images/list-bullet.png); 
+	background-image:url(images/list-bullet.png);
 }
 .markItUp .markItUpButton5 a {
 	background-image:url(images/list-numeric.png);
 }
 
 .markItUp .markItUpButton6 a {
-	background-image:url(images/picture.png); 
+	background-image:url(images/picture.png);
 }
 .markItUp .markItUpButton7 a {
 	background-image:url(images/link.png);
 }
 
-.markItUp .markItUpButton8 a {
+.markItUp .clean a {
 	background-image:url(images/clean.png);
 }
 .markItUp .preview a {
 	background-image:url(images/preview.png);
+}
+
+.markItUp .colors a {
+    background-image: url("images/colors.png");
+}
+.markItUp .colors ul {
+    margin: 0px;
+    padding: 1px;
+    width: 81px;
+}
+.markItUp .colors li {
+    border: 1px solid white;
+    float: left;
+    height: 25px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 25px;
+}
+.markItUp .colors ul a {
+    height: 25px;
+    width: 25px;
+}
+
+.markItUp .colors .color_yellow a {
+    background: none repeat scroll 0 0 #ffff00;
+}
+.markItUp .colors .color_orange a {
+    background: none repeat scroll 0 0 #ffa500;
+}
+.markItUp .colors .color_red a {
+    background: none repeat scroll 0 0 #ff0000;
+}
+.markItUp .colors .color_blue a {
+    background: none repeat scroll 0 0 #0000ff;
+}
+.markItUp .colors .color_purple a {
+    background: none repeat scroll 0 0 #800080;
+}
+.markItUp .colors .color_green a {
+    background: none repeat scroll 0 0 #008000;
+}
+.markItUp .colors .color_white a {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+.markItUp .colors .color_gray a {
+    background: none repeat scroll 0 0 #808080;
+}
+.markItUp .colors .color_black a {
+    background: none repeat scroll 0 0 #000000;
 }
