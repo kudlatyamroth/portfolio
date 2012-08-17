@@ -1,7 +1,8 @@
 # Django settings for kudlaty project.
 
 import os
-PROJECT_DIR = os.getcwd() + '/kudlaty/'
+ROOT_DIR = os.getcwd() + '/'
+PROJECT_DIR = ROOT_DIR + 'kudlaty/'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -74,6 +75,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    PROJECT_DIR + 'static_files/',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
