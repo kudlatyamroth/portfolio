@@ -1,3 +1,23 @@
 .markItUp {
     float: left;
+    width: auto;
+}
+
+.markItUpEditor {
+    float: left;
+}
+
+.markItUpPreviewFrame {
+    border: 3px solid #3C769D;
+    float: left;
+    font: 12px/18px 'Courier New',Courier,monospace;
+    height: 320px;
+    overflow: auto;
+    padding: 5px 5px 5px 5px;
+    margin: 0 0 0 5px;
+    width: 643px;
+}
+
+.markItUpFooter {
+    clear: both;
 }
