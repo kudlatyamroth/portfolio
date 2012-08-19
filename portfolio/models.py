@@ -1,5 +1,7 @@
 import datetime
+
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 class Tag(models.Model):
@@ -39,8 +41,8 @@ class Project(models.Model):
     class Meta:
         ordering = ['-position',]
 
-    #def get_description(self):
-        #return mark_safe(render_bbcode(self.description))
+    def get_description(self):
+        return mark_safe(self.description)
 
 
 #class Gallery(models.Model):
