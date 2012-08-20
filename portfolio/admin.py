@@ -2,8 +2,9 @@ from django import forms
 from django.contrib import admin
 
 from modeltranslation.admin import TranslationAdmin
+from MyWidgets.widget import MyEditorWidget
 
-from models import Tag, Project
+from models import Tag, Project, Gallery
 
 
 class TagAdmin(TranslationAdmin):
@@ -13,27 +14,6 @@ class TagAdmin(TranslationAdmin):
     list_filter = ('category',)
     search_fields = ('name',)
 
-
-class MyEditorWidget(forms.Textarea):
-    class Media:
-        css = { 'all' : ( 'css/ui-lightness/jquery-ui-1.8.23.css', 'js/markitup/skins/markitup/style.css', 'js/markitup/sets/default/style.css', 'css/markitup.css') }
-        js = (
-            'js/jquery-1.8.0.min.js',
-            'js/jquery-ui-1.8.23.min.js',
-            'js/markitup/jquery.markitup.js',
-            'js/markitup/sets/default/set.js',
-            'js/enable_editor.js',
-        )
-
-    def __init__(self, attrs={}):
-        editorClass = ' myeditor'
-        try:
-            if editorClass not in attrs['class']:
-                attrs['class'] += editorClass
-        except KeyError:
-            attrs['class'] = editorClass
-
-        super(MyEditorWidget, self).__init__(attrs=attrs)
 
 class ProjectForm(forms.ModelForm):
     class Meta:
@@ -60,5 +40,18 @@ class ProjectAdmin(TranslationAdmin):
     form = ProjectForm
 
 
+class GalleryAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['project', 'main', 'name', 'file', 'status']}),
+        ('Date', {'fields': ['created', 'modified'], 'classes': ['collapse']}),
+    ]
+    list_display = ('position', 'name', 'status', 'main', 'file')
+    list_display_links = ('name','file')
+    list_filter = ('status', 'main', 'name',)
+    search_fields = ('name',)
+    list_editable = ['position']
+
+
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(Gallery, GalleryAdmin)

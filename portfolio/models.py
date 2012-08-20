@@ -3,6 +3,8 @@ import datetime
 from django.db import models
 from django.utils.safestring import mark_safe
 
+from MyWidgets.fields import VideoOrImageField
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
@@ -45,42 +47,42 @@ class Project(models.Model):
         return mark_safe(self.description)
 
 
-#class Gallery(models.Model):
-    #project = models.ForeignKey(Project, null=True, blank=True)
-    #name = models.CharField(max_length=255, null=True, blank=True)
-    #main = models.BooleanField()
-    #file = ThumbnailVideoOrImageField(upload_to='files', thumb_aspect=False, null=True, blank=True)
-    #status = models.BooleanField(default=True)
-    #created = models.DateTimeField(default=datetime.datetime.now)
-    #modified = models.DateTimeField(default=datetime.datetime.now)
-    #position = models.IntegerField(null=True, blank=True)
+class Gallery(models.Model):
+    project = models.ForeignKey(Project, null=True, blank=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    main = models.BooleanField()
+    file = VideoOrImageField(upload_to='files', null=True, blank=True)
+    status = models.BooleanField(default=True)
+    created = models.DateTimeField(default=datetime.datetime.now)
+    modified = models.DateTimeField(default=datetime.datetime.now)
+    position = models.IntegerField(null=True, blank=True)
 
-    #def file_thumb(self):
-        #if self.file:
-            #return u'<img src="%s" />' % self.file.thumb_url
-        #else:
-            #return '(no image)'
-    #file_thumb.short_description = 'Thumb'
-    #file_thumb.allow_tags = True
+    def file_thumb(self):
+        if self.file:
+            return u'<img src="%s" />' % self.file.thumb_url
+        else:
+            return '(no image)'
+    file_thumb.short_description = 'Thumb'
+    file_thumb.allow_tags = True
 
-    #def save(self, *args, **kwargs):
-        #model = self.__class__
+    def save(self, *args, **kwargs):
+        model = self.__class__
 
-        #if self.position is None:
-            #try:
-                #last = model.objects.filter(project = self.project).order_by('-position')[0]
-                #self.position = last.position + 1
-            #except IndexError:
-                #self.position = 0
+        if self.position is None:
+            try:
+                last = model.objects.filter(project = self.project).order_by('-position')[0]
+                self.position = last.position + 1
+            except IndexError:
+                self.position = 0
 
-        #return super(Gallery, self).save(*args, **kwargs)
+        return super(Gallery, self).save(*args, **kwargs)
 
-    #class Meta:
-        #ordering = ['position']
-        #verbose_name_plural = "galleries"
+    class Meta:
+        ordering = ['position']
+        verbose_name_plural = "galleries"
 
-    #def __unicode__(self):
-        #if self.name:
-            #return self.name
-        #else:
-            #return 'name'
+    def __unicode__(self):
+        if self.name:
+            return self.name
+        else:
+            return 'name'
